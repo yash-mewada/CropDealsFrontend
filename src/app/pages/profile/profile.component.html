@@ -1,79 +1,111 @@
 <div class="container mt-5" *ngIf="!loading">
-    <div class="card shadow p-4">
-      <h3 class="mb-4">My Profile</h3>
-  
+  <div class="card shadow p-4">
+    <h3 class="mb-4">My Profile</h3>
+
+    <!-- If not editing, show profile -->
+    <div *ngIf="!editMode">
       <div class="row mb-3">
-        <div class="col-md-6">
-          <strong>Name:</strong> {{ profileData.name }}
-        </div>
-        <div class="col-md-6">
-          <strong>Email:</strong> {{ profileData.email }}
-        </div>
+        <div class="col-md-6"><strong>Name:</strong> {{ profileData.name }}</div>
+        <div class="col-md-6"><strong>Email:</strong> {{ profileData.email }}</div>
       </div>
-  
+
       <div class="row mb-3">
-        <div class="col-md-6">
-          <strong>Phone Number:</strong> {{ profileData.phoneNumber }}
-        </div>
-        <div class="col-md-6">
-          <strong>Role:</strong> {{ profileData.role }}
-        </div>
+        <div class="col-md-6"><strong>Phone Number:</strong> {{ profileData.phoneNumber }}</div>
+        <div class="col-md-6"><strong>Role:</strong> {{ profileData.role }}</div>
       </div>
-  
+
       <div class="row mb-3">
-        <div class="col-md-6">
-          <strong>Status:</strong> {{ profileData.status }}
-        </div>
-        <div class="col-md-6">
-          <strong>Street:</strong> {{ profileData.street }}
-        </div>
+        <div class="col-md-6"><strong>Status:</strong> {{ profileData.status }}</div>
+        <div class="col-md-6"><strong>Street:</strong> {{ profileData.street }}</div>
       </div>
-  
+
       <div class="row mb-3">
-        <div class="col-md-6">
-          <strong>City:</strong> {{ profileData.city }}
-        </div>
-        <div class="col-md-6">
-          <strong>State:</strong> {{ profileData.state }}
-        </div>
+        <div class="col-md-6"><strong>City:</strong> {{ profileData.city }}</div>
+        <div class="col-md-6"><strong>State:</strong> {{ profileData.state }}</div>
       </div>
-  
+
       <div class="row mb-3">
-        <div class="col-md-6">
-          <strong>Zip Code:</strong> {{ profileData.zipCode }}
-        </div>
-        <div class="col-md-6">
-          <strong>Bank Name:</strong> {{ profileData.bankName }}
-        </div>
+        <div class="col-md-6"><strong>Zip Code:</strong> {{ profileData.zipCode }}</div>
+        <div class="col-md-6"><strong>Bank Name:</strong> {{ profileData.bankName }}</div>
       </div>
-  
+
       <div class="row mb-3">
-        <div class="col-md-6">
-          <strong>Branch Name:</strong> {{ profileData.branchName }}
-        </div>
-        <div class="col-md-6">
-          <strong>Account Number:</strong> {{ profileData.accountNumber }}
-        </div>
+        <div class="col-md-6"><strong>Branch Name:</strong> {{ profileData.branchName }}</div>
+        <div class="col-md-6"><strong>Account Number:</strong> {{ profileData.accountNumber }}</div>
       </div>
-  
+
       <div class="row mb-3">
-        <div class="col-md-6">
-          <strong>IFSC Code:</strong> {{ profileData.ifscCode }}
-        </div>
+        <div class="col-md-6"><strong>IFSC Code:</strong> {{ profileData.ifscCode }}</div>
       </div>
-  
-      <!-- Only show Average Rating if role is Farmer -->
+
       <div class="row mb-3" *ngIf="profileData.role === 'Farmer' && profileData.averageRating !== null">
+        <div class="col-md-6"><strong>Average Rating:</strong> {{ profileData.averageRating }}</div>
+      </div>
+
+      <button class="btn btn-primary mt-3" (click)="enableEdit()">Edit Profile</button>
+    </div>
+
+    <!-- Edit form -->
+    <form *ngIf="editMode" (ngSubmit)="updateProfile()">
+      <div class="row mb-3">
         <div class="col-md-6">
-          <strong>Average Rating:</strong> {{ profileData.averageRating }}
+          <label>Phone Number</label>
+          <input type="text" class="form-control" [(ngModel)]="editForm.phoneNumber" name="phoneNumber" required>
+        </div>
+        <div class="col-md-6">
+          <label>Street</label>
+          <input type="text" class="form-control" [(ngModel)]="editForm.street" name="street">
         </div>
       </div>
-    </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label>City</label>
+          <input type="text" class="form-control" [(ngModel)]="editForm.city" name="city">
+        </div>
+        <div class="col-md-6">
+          <label>State</label>
+          <input type="text" class="form-control" [(ngModel)]="editForm.state" name="state">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label>Zip Code</label>
+          <input type="text" class="form-control" [(ngModel)]="editForm.zipCode" name="zipCode">
+        </div>
+        <div class="col-md-6">
+          <label>Account Number</label>
+          <input type="text" class="form-control" [(ngModel)]="editForm.accountNumber" name="accountNumber">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label>IFSC Code</label>
+          <input type="text" class="form-control" [(ngModel)]="editForm.ifscCode" name="ifscCode">
+        </div>
+        <div class="col-md-6">
+          <label>Bank Name</label>
+          <input type="text" class="form-control" [(ngModel)]="editForm.bankName" name="bankName">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label>Branch Name</label>
+          <input type="text" class="form-control" [(ngModel)]="editForm.branchName" name="branchName">
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success mt-3">Save Changes</button>
+      <button type="button" class="btn btn-secondary mt-3 ms-2" (click)="cancelEdit()">Cancel</button>
+    </form>
   </div>
-  
-  <div *ngIf="loading" class="text-center mt-5">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
+</div>
+
+<div *ngIf="loading" class="text-center mt-5">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
   </div>
-  
+</div>

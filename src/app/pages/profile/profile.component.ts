@@ -14,6 +14,8 @@ import Swal from 'sweetalert2';
 export class ProfileComponent implements OnInit {
   profileData: any = null;
   loading = true;
+  editMode = false;
+  editForm: any = {};
 
   constructor(private http: HttpClient) {}
 
@@ -23,7 +25,7 @@ export class ProfileComponent implements OnInit {
 
   fetchProfile() {
     const token = localStorage.getItem('token');
-  
+
     if (!token) {
       Swal.fire({
         icon: 'error',
@@ -32,7 +34,7 @@ export class ProfileComponent implements OnInit {
       });
       return;
     }
-  
+
     this.http.get<any>('http://localhost:5180/api/Account/profile', {
       headers: {
         Authorization: `Bearer ${token}`
@@ -54,5 +56,61 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
-  
+
+  enableEdit() {
+    this.editMode = true;
+    this.editForm = {
+      phoneNumber: this.profileData.phoneNumber || '',
+      street: this.profileData.street || '',
+      city: this.profileData.city || '',
+      state: this.profileData.state || '',
+      zipCode: this.profileData.zipCode || '',
+      accountNumber: this.profileData.accountNumber || '',
+      ifscCode: this.profileData.ifscCode || '',
+      bankName: this.profileData.bankName || '',
+      branchName: this.profileData.branchName || '',
+    };
+  }
+
+  cancelEdit() {
+    this.editMode = false;
+    this.editForm = {};
+  }
+
+  updateProfile() {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Unauthorized',
+        text: 'You must be logged in to update profile.',
+      });
+      return;
+    }
+
+    this.http.put('http://localhost:5180/api/Account/update-profile', this.editForm, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      responseType: 'text' as 'json'
+    }).subscribe({
+      next: () => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Profile updated!',
+        });
+        this.editMode = false;
+        this.fetchProfile(); // Reload latest profile
+      },
+      error: (error) => {
+        console.error('Update failed', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Update failed',
+          text: 'Please try again.',
+        });
+      }
+    });
+  }
 }
