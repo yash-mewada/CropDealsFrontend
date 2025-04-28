@@ -1,0 +1,79 @@
+<div class="container mt-5" *ngIf="!loading">
+    <div class="card shadow p-4">
+      <h3 class="mb-4">My Profile</h3>
+  
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong>Name:</strong> {{ profileData.name }}
+        </div>
+        <div class="col-md-6">
+          <strong>Email:</strong> {{ profileData.email }}
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong>Phone Number:</strong> {{ profileData.phoneNumber }}
+        </div>
+        <div class="col-md-6">
+          <strong>Role:</strong> {{ profileData.role }}
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong>Status:</strong> {{ profileData.status }}
+        </div>
+        <div class="col-md-6">
+          <strong>Street:</strong> {{ profileData.street }}
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong>City:</strong> {{ profileData.city }}
+        </div>
+        <div class="col-md-6">
+          <strong>State:</strong> {{ profileData.state }}
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong>Zip Code:</strong> {{ profileData.zipCode }}
+        </div>
+        <div class="col-md-6">
+          <strong>Bank Name:</strong> {{ profileData.bankName }}
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong>Branch Name:</strong> {{ profileData.branchName }}
+        </div>
+        <div class="col-md-6">
+          <strong>Account Number:</strong> {{ profileData.accountNumber }}
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong>IFSC Code:</strong> {{ profileData.ifscCode }}
+        </div>
+      </div>
+  
+      <!-- Only show Average Rating if role is Farmer -->
+      <div class="row mb-3" *ngIf="profileData.role === 'Farmer' && profileData.averageRating !== null">
+        <div class="col-md-6">
+          <strong>Average Rating:</strong> {{ profileData.averageRating }}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="loading" class="text-center mt-5">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  

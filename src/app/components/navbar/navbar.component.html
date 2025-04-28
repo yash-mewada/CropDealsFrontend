@@ -1,0 +1,13 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid ">
+        <a class="navbar-brand fw-bold" routerLink="/home">Crop Deals</a>
+      
+      <div class="d-flex align-items-center ms-auto">
+        <span *ngIf="userName" class="me-3">Welcome, {{ userName }}!</span>
+        <a class="btn btn-outline-primary me-2" routerLink="/home">Home</a>
+        <a class="btn btn-outline-secondary me-2" routerLink="/profile">My Profile</a>
+        <button class="btn btn-outline-danger" (click)="onLogout()">Logout</button>
+      </div>
+    </div>
+  </nav>
+  

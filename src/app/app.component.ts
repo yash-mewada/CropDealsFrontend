@@ -1,12 +1,25 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router } from '@angular/router';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, NavbarComponent],
+  template: `
+    <app-navbar *ngIf="showNavbar"></app-navbar>
+    <router-outlet></router-outlet>
+  `,
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'CropDealsFrontend';
+  showNavbar = true;
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(() => {
+      const currentUrl = this.router.url;
+      this.showNavbar = !(currentUrl.includes('signin') || currentUrl.includes('signup'));
+    });
+  }
 }
