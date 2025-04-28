@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,10 +18,9 @@ export class SignUpComponent {
   password = '';
   role = '';
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   onSignUp() {
-    // Form validation
     if (!this.name || !this.email || !this.password || !this.role) {
       Swal.fire({
         icon: 'warning',
@@ -30,7 +30,6 @@ export class SignUpComponent {
       return;
     }
 
-    // Create the request payload
     const signupData = {
       name: this.name,
       email: this.email,
@@ -38,8 +37,7 @@ export class SignUpComponent {
       role: this.role,
     };
 
-    // Send the HTTP POST request
-    this.http.post('http://localhost:5180/api/Account/register', signupData, { responseType: 'text' })
+    this.authService.signUp(signupData)
       .subscribe({
         next: (response: string) => {
           Swal.fire({
@@ -55,11 +53,10 @@ export class SignUpComponent {
           console.error('Registration error:', error);
 
           let errorMessage = 'Something went wrong. Please try again.';
-          
           if (error.error && typeof error.error === 'string') {
-            errorMessage = error.error; 
+            errorMessage = error.error;
           } else if (error.error?.message) {
-            errorMessage = error.error.message; 
+            errorMessage = error.error.message;
           }
 
           Swal.fire({
