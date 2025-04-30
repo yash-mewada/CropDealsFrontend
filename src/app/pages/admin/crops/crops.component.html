@@ -1,7 +1,9 @@
 <div class="container mt-4">
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h4>Crops</h4>
-    <button class="btn btn-primary" (click)="openAddCropModal()">Add Crop</button>
+    <button class="btn btn-primary" (click)="openAddCropModal()">
+      <i class="bi bi-plus-lg me-1"></i> Add Crop
+    </button>
   </div>
 
   <table class="table table-bordered" *ngIf="paginatedCrops.length > 0">
@@ -9,15 +11,22 @@
       <tr>
         <th>Name</th>
         <th>Type</th>
-        <th>Actions</th>
+        <th class="text-center">Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let crop of paginatedCrops">
         <td>{{ crop.name }}</td>
         <td>{{ crop.type }}</td>
-        <td>
-          <button class="btn btn-danger btn-sm" (click)="deleteCrop(crop.id)">Delete</button>
+        <td class="text-center">
+          <div class="btn-group" role="group">
+            <button class="btn btn-warning btn-sm me-2" (click)="openUpdateCropModal(crop)">
+              <i class="bi bi-pencil-square me-1"></i> Update
+            </button>
+            <button class="btn btn-danger btn-sm" (click)="deleteCrop(crop.id)">
+              <i class="bi bi-trash me-1"></i> Delete
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>

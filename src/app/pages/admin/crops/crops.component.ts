@@ -132,5 +132,66 @@ export class CropsComponent implements OnInit {
       }
     });
   }
+
+  openUpdateCropModal(crop: any): void {
+    Swal.fire({
+      title: 'Update Crop',
+      html: `
+        <style>
+          #cropName::placeholder {
+            color: #666 !important;
+            opacity: 1;
+          }
+        </style>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+          <input 
+            id="cropName" 
+            class="swal2-input" 
+            value="${crop.name}"
+            style="width: 300px; color: #333333; background-color: #f4f4f4; border: 1px solid #ccc; font-weight: bold; padding: 10px;" 
+            placeholder="Crop Name" 
+            required
+          >
+          <select 
+            id="cropType" 
+            class="swal2-input" 
+            style="width: 300px; color: #333333; background-color: #f4f4f4; border: 1px solid #ccc; font-weight: bold; padding: 10px;"
+          >
+            <option value="0" ${crop.type === 0 ? 'selected' : ''}>Fruits</option>
+            <option value="1" ${crop.type === 1 ? 'selected' : ''}>Vegetables</option>
+            <option value="2" ${crop.type === 2 ? 'selected' : ''}>Grains</option>
+          </select>
+        </div>
+      `,
+      preConfirm: () => {
+        const name = (document.getElementById('cropName') as HTMLInputElement).value.trim();
+        const typeString = (document.getElementById('cropType') as HTMLSelectElement).value;
+        const type = parseInt(typeString, 10);
+  
+        if (!name) {
+          Swal.showValidationMessage('Crop name is required');
+          return;
+        }
+  
+        return { id: crop.id, name, type };
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Update',
+    }).then((result) => {
+      if (result.isConfirmed && result.value) {
+        const payload = result.value;
+        this.http.put(`http://localhost:5180/api/Crop/${payload.id}`, payload).subscribe({
+          next: () => {
+            Swal.fire('Success', 'Crop updated successfully', 'success');
+            this.fetchCrops();
+          },
+          error: () => {
+            Swal.fire('Error', 'Failed to update crop', 'error');
+          }
+        });
+      }
+    });
+  }
+  
   
 }
