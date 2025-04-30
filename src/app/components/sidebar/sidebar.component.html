@@ -1,0 +1,9 @@
+<div class="sidebar bg-light p-3" style="height: 100vh; width: 200px; position: fixed;">
+    <ul class="nav flex-column">
+      <li *ngIf="role === 'Admin'" class="nav-item">
+        <a class="nav-link" routerLink="/crops">Crops</a>
+      </li>
+      <!-- Add more links for other roles if needed -->
+    </ul>
+  </div>
+  
