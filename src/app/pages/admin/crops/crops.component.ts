@@ -25,31 +25,31 @@ export class CropsComponent implements OnInit {
     Swal.fire({
       title: 'Add Crop',
       html: `
-  <style>
-    #cropName::placeholder {
-      color: #666 !important;
-      opacity: 1;
-    }
-  </style>
-  <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
-    <input 
-      id="cropName" 
-      class="swal2-input" 
-      style="width: 300px; color: #333333; background-color: #f4f4f4; border: 1px solid #ccc; font-weight: bold; padding: 10px;" 
-      placeholder="Crop Name" 
-      required
-    >
-    <select 
-      id="cropType" 
-      class="swal2-input" 
-      style="width: 300px; color: #333333; background-color: #f4f4f4; border: 1px solid #ccc; font-weight: bold; padding: 10px;"
-    >
-      <option value="0">Fruits</option>
-      <option value="1">Vegetables</option>
-      <option value="2">Grains</option>
-    </select>
-  </div>
-`,
+        <style>
+          #cropName::placeholder {
+            color: #666 !important;
+            opacity: 1;
+          }
+        </style>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+          <input 
+            id="cropName" 
+            class="swal2-input" 
+            style="width: 300px; color: #333333; background-color: #f4f4f4; border: 1px solid #ccc; font-weight: bold; padding: 10px;" 
+            placeholder="Crop Name" 
+            required
+          >
+          <select 
+            id="cropType" 
+            class="swal2-input" 
+            style="width: 300px; color: #333333; background-color: #f4f4f4; border: 1px solid #ccc; font-weight: bold; padding: 10px;"
+          >
+            <option value="0">Fruits</option>
+            <option value="1">Vegetables</option>
+            <option value="2">Grains</option>
+          </select>
+        </div>
+      `,
 
 
       preConfirm: () => {
