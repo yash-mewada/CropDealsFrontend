@@ -1,32 +1,40 @@
 <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
-  <div class="card p-4 shadow" style="width: 350px;">
-    <h3 class="text-center mb-4">Sign Up</h3>
-    <form (ngSubmit)="onSignUp()">
-      <div class="mb-3">
-        <label>Name</label>
-        <input type="text" class="form-control" [(ngModel)]="name" name="name" required>
-      </div>
-      <div class="mb-3">
-        <label>Email address</label>
-        <input type="email" class="form-control" [(ngModel)]="email" name="email" required>
-      </div>
-      <div class="mb-3">
-        <label>Password</label>
-        <input type="password" class="form-control" [(ngModel)]="password" name="password" required>
-      </div>
-      <div class="mb-3">
-        <label>Role</label>
-        <select class="form-control" [(ngModel)]="role" name="role" required>
-          <option value="" disabled selected>Select Role</option>
-          <option value="Farmer">Farmer</option>
-          <option value="Dealer">Dealer</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-success w-100">Sign Up</button>
-    </form>
-    <p class="text-center mt-3">
-      Already have an account?
-      <a routerLink="/signin">Sign In</a>
-    </p>
+  <div class="row shadow rounded bg-white" style="max-width: 800px; width: 100%;">
+    <!-- Image Column -->
+    <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center p-3">
+      <img src="cropdeals.png" alt="Crop Deals" class="img-fluid" style="max-height: 300px;" />
+    </div>
+
+    <!-- Form Column -->
+    <div class="col-md-6 p-4">
+      <h3 class="text-center mb-4">Sign Up</h3>
+      <form (ngSubmit)="onSignUp()">
+        <div class="mb-3">
+          <label>Name</label>
+          <input type="text" class="form-control" [(ngModel)]="name" name="name" required>
+        </div>
+        <div class="mb-3">
+          <label>Email address</label>
+          <input type="email" class="form-control" [(ngModel)]="email" name="email" required>
+        </div>
+        <div class="mb-3">
+          <label>Password</label>
+          <input type="password" class="form-control" [(ngModel)]="password" name="password" required>
+        </div>
+        <div class="mb-3">
+          <label>Role</label>
+          <select class="form-control" [(ngModel)]="role" name="role" required>
+            <option value="" disabled selected>Select Role</option>
+            <option value="Farmer">Farmer</option>
+            <option value="Dealer">Dealer</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Sign Up</button>
+      </form>
+      <p class="text-center mt-3">
+        Already have an account?
+        <a routerLink="/signin">Sign In</a>
+      </p>
+    </div>
   </div>
 </div>
