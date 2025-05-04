@@ -1,9 +1,24 @@
-<div class="sidebar bg-light p-3" style="height: 100vh; width: 200px; position: fixed;">
-    <ul class="nav flex-column">
-      <li *ngIf="role === 'Admin'" class="nav-item">
-        <a class="nav-link" routerLink="/crops">Crops</a>
-      </li>
-      <!-- Add more links for other roles if needed -->
-    </ul>
-  </div>
-  
+<div class="sidebar p-3" style="height: 100vh; width: 220px; position: fixed; background-color: #e9f7ef;">
+  <ul class="nav flex-column fw-semibold fs-5">
+    <li *ngIf="role === 'Admin'" class="nav-item">
+      <a 
+        class="nav-link text-dark" 
+        routerLink="/crops" 
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <i class="bi bi-card-list me-2"></i> Crops
+      </a>
+    </li>
+    <li *ngIf="role === 'Farmer'" class="nav-item">
+      <a 
+        class="nav-link text-dark" 
+        routerLink="/crop-listing" 
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <i class="bi bi-plus-circle me-2"></i> Post a Crop
+      </a>
+    </li>
+  </ul>
+</div>
