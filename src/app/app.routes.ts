@@ -5,9 +5,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { CropsComponent } from './pages/admin/crops/crops.component';
 import { CropListingComponent } from './pages/farmer/crop-listing/crop-listing.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/signin', pathMatch: 'full' },
+  { path: '', component: LandingPageComponent },
   { path: 'signin', component: SignInComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'home', component: HomeComponent },

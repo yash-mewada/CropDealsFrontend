@@ -25,7 +25,9 @@ export class AppComponent {
   constructor(private router: Router) {
     this.router.events.subscribe(() => {
       const currentUrl = this.router.url;
-      this.showLayout = !(currentUrl.includes('signin') || currentUrl.includes('signup'));
+      const hiddenRoutes = ['/', '/signin', '/signup'];
+      this.showLayout = !hiddenRoutes.includes(currentUrl);
     });
   }
+  
 }
