@@ -20,5 +20,15 @@
         <i class="bi bi-plus-circle me-2"></i> Post a Crop
       </a>
     </li>
+    <li *ngIf="role === 'Dealer'" class="nav-item">
+      <a 
+        class="nav-link text-dark" 
+        routerLink="/crops-near-you" 
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <i class="bi bi-geo-alt me-2"></i> Crops Near You
+      </a>
+    </li>    
   </ul>
 </div>

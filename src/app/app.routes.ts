@@ -6,6 +6,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { CropsComponent } from './pages/admin/crops/crops.component';
 import { CropListingComponent } from './pages/farmer/crop-listing/crop-listing.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { CropsNearYouComponent } from './pages/dealer/crops-near-you/crops-near-you.component';
+import { CropDetailsComponent } from './pages/dealer/crop-details/crop-details.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -14,5 +16,7 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'crops', component: CropsComponent },
-  { path: 'crop-listing', component: CropListingComponent }
+  { path: 'crop-listing', component: CropListingComponent },
+  { path: 'crops-near-you', component: CropsNearYouComponent },
+  { path: 'crop-details/:id', component: CropDetailsComponent },
 ];
