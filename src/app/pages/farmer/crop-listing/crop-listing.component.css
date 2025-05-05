@@ -1,0 +1,38 @@
+input[type="file"]::file-selector-button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border: none;
+    background-color: #0d6efd;
+    color: white;
+    border-radius: 0.25rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+  }
+  
+  input[type="file"]::file-selector-button:hover {
+    background-color: #0b5ed7;
+  }
+  
+/* Custom styling for the modal */
+.swal-modal-custom {
+    padding: 20px;
+    max-width: 500px;
+    width: 90%;
+    text-align: left;
+  }
+  
+  /* Adjust the space between the image and the text */
+  .swal-modal-custom img {
+    margin-bottom: 10px; /* Adjust the space between image and text */
+  }
+  
+  /* Ensure equal spacing between the text and close button */
+  .swal-modal-custom div {
+    margin-bottom: 10px; /* Reduce space between text and close button */
+  }
+  
+  /* Adjust button and spacing */
+  .swal-confirm-btn {
+    margin-top: 10px; /* Adjust space between text and button */
+  }
+  
