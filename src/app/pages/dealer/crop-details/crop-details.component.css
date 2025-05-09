@@ -1,0 +1,59 @@
+/* Container for the entire product page layout */
+.product-container {
+    display: flex;
+    gap: 40px;
+    margin-top: 30px;
+    padding-left: 50px;
+  }
+  
+  /* Image section styling */
+  .product-image img {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Product details styling */
+  .product-details {
+    max-width: 500px;
+  }
+  
+  .product-details h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #2c3e50;
+  }
+  
+  .price {
+    font-size: 1.5rem;
+    color: #27ae60;
+    margin-bottom: 15px;
+  }
+  
+  .farmer-details {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .farmer-details h5 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+  }
+  
+  button {
+    width: 100%;
+    font-size: 1.2rem;
+  }
+  
+  /* Loading spinner styles */
+  .loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+  }
+  

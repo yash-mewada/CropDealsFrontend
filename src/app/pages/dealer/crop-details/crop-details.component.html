@@ -1,9 +1,30 @@
-<div class="container mt-4" style="padding-left: 30px;">
-    <h4>{{ crop.cropName }}</h4>
-    <img [src]="crop.imageBase64" class="img-fluid mb-3" alt="Crop Image" style="max-height: 300px;">
-    <p><strong>Price:</strong> ₹{{ crop.pricePerKg }}/Kg</p>
-    <p><strong>Quantity:</strong> {{ crop.quantity }} Kg</p>
-    <p><strong>Description:</strong> {{ crop.description }}</p>
-    <button class="btn btn-primary" (click)="buyNow()">Buy Now</button>
+<div class="product-container" *ngIf="!isLoading; else loading">
+  <div class="product-image">
+    <img [src]="crop.imageBase64" alt="{{ crop.cropName }}">
   </div>
-  
+
+  <div class="product-details">
+    <h2>{{ crop.cropName }}</h2>
+    <p class="price">₹{{ crop.pricePerKg }}/Kg</p>
+    <div class="farmer-details">
+      <p><strong>Quantity Available:</strong> {{ crop.quantity }} Kg</p>
+      <p><strong>Description:</strong> {{ crop.description }}</p>
+      <h5>Farmer Details:</h5>
+      <p><strong>Name:</strong> {{ crop.farmerName }}</p>
+      <p><strong>Contact:</strong> {{ crop.farmerPhoneNumber }}</p>
+      <p><strong>Location:</strong> {{ crop.street }}, {{ crop.city }}, {{ crop.state }} - {{ crop.zipCode }}</p>
+    </div>
+
+    <button class="btn btn-success mt-4" (click)="buyNow()">
+      <i class="bi bi-bag-check-fill"></i> Buy Now
+    </button>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="loading-spinner">
+    <div class="spinner-border text-success" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</ng-template>
