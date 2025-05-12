@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -13,7 +13,7 @@ export class CropDetailsComponent implements OnInit {
   crop: any;
   isLoading: boolean = true;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     const cropId = this.route.snapshot.paramMap.get('id');
@@ -40,6 +40,6 @@ export class CropDetailsComponent implements OnInit {
   }
 
   buyNow(): void {
-    alert(`You have initiated the purchase of ${this.crop.quantity} Kg of ${this.crop.cropName}.`);
+    this.router.navigate(['/payment'], { state: { cropData: this.crop } });
   }
 }
