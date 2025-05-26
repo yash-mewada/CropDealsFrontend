@@ -31,7 +31,7 @@ export class PaymentPageComponent implements OnInit {
   if (!this.crop) {
     this.router.navigate(['/']);
   } else {
-    console.log(this.crop.listingId); // ✅ This should be the correct ID
+    console.log(this.crop.listingId); 
     this.totalPrice = this.crop.pricePerKg * this.quantity;
     this.isLoading = false;
   }
