@@ -1,0 +1,17 @@
+<div class="container mt-4">
+  <h2 class="mb-4">My Transactions</h2>
+  <div *ngIf="transactions.length === 0">
+    No transactions found.
+  </div>
+  <div *ngFor="let tx of transactions" class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">{{ tx.listing.description }}</h5>
+      <p class="card-text">
+        Quantity: {{ tx.quantity }} kg<br>
+        Price per Kg: ₹{{ tx.finalPricePerKg }}<br>
+        Total: ₹{{ tx.totalPrice }}<br>
+        Date: {{ convertToIST(tx.createdAt) | date:'medium' }}
+      </p>
+    </div>
+  </div>
+</div>
