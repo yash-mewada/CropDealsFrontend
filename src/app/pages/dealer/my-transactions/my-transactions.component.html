@@ -1,17 +1,25 @@
-<div class="container mt-4">
+<div class="container mt-4" style="margin-left: 200px;">
   <h2 class="mb-4">My Transactions</h2>
+
   <div *ngIf="transactions.length === 0">
     No transactions found.
   </div>
+
   <div *ngFor="let tx of transactions" class="card mb-3">
-    <div class="card-body">
-      <h5 class="card-title">{{ tx.listing.description }}</h5>
-      <p class="card-text">
-        Quantity: {{ tx.quantity }} kg<br>
-        Price per Kg: ₹{{ tx.finalPricePerKg }}<br>
-        Total: ₹{{ tx.totalPrice }}<br>
-        Date: {{ convertToIST(tx.createdAt) | date:'medium' }}
-      </p>
+    <div class="card-body d-flex">
+      <img 
+        [src]="tx.imageBase64"
+        alt="Crop Image"
+        class="rounded me-3"
+        style="width: 120px; height: 100px; object-fit: cover;"
+      >
+      <div>
+        <h5 class="card-title">{{ tx.cropName }}</h5>
+        <p class="card-text mb-0">Quantity: {{ tx.quantity }} kg</p>
+        <p class="card-text mb-0">Price per Kg: ₹{{ tx.finalPricePerKg }}</p>
+        <p class="card-text mb-0">Total: ₹{{ tx.totalPrice }}</p>
+        <p class="card-text">Date: {{ convertToIST(tx.createdAt) | date:'medium' }}</p>
+      </div>
     </div>
   </div>
 </div>

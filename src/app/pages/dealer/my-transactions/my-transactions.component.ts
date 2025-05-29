@@ -4,17 +4,15 @@ import { CommonModule } from '@angular/common';
 
 interface Transaction {
   id: string;
+  cropName: string;
+  description: string;
+  imageBase64: string;
   quantity: number;
   finalPricePerKg: number;
   totalPrice: number;
   createdAt: string;
-  listing: {
-    description: string;
-    pricePerKg: number;
-    quantity: number;
-    imageBase64: string;
-  };
 }
+
 
 @Component({
   selector: 'app-my-transactions',
