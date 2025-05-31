@@ -10,6 +10,7 @@ import { CropsNearYouComponent } from './pages/dealer/crops-near-you/crops-near-
 import { CropDetailsComponent } from './pages/dealer/crop-details/crop-details.component';
 import { PaymentPageComponent } from './pages/payment-page/payment-page.component';
 import { MyTransactionsComponent } from './pages/dealer/my-transactions/my-transactions.component';
+import { SubscriptionComponent } from './pages/dealer/subscription/subscription.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -22,5 +23,6 @@ export const routes: Routes = [
   { path: 'crops-near-you', component: CropsNearYouComponent },
   { path: 'crop-details/:id', component: CropDetailsComponent },
   { path: 'payment', component: PaymentPageComponent },
-  { path: 'my-transactions', component: MyTransactionsComponent }
+  { path: 'my-transactions', component: MyTransactionsComponent },
+  {path: 'subscribe', component: SubscriptionComponent }
 ];

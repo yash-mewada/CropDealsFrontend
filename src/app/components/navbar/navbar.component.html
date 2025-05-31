@@ -1,6 +1,3 @@
-<!-- Make sure this is in your index.html head if not already present -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand fw-bold text-white" routerLink="/home">
@@ -8,6 +5,42 @@
     </a>
 
     <div class="d-flex align-items-center ms-auto">
+      <!-- Notification Bell with Dropdown -->
+      <div class="position-relative me-2">
+        <button
+          class="btn btn-outline-light position-relative"
+          (click)="toggleNotificationPanel()"
+          title="Crop Alerts"
+        >
+          <i class="bi bi-bell-fill"></i>
+          <span
+            *ngIf="cropNotifications.length > 0"
+            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+          >
+            {{ cropNotifications.length }}
+          </span>
+        </button>
+
+        <!-- Dropdown Notification Panel -->
+        <div
+          *ngIf="showNotifications"
+          class="position-absolute bg-white border rounded shadow"
+          style="top: 40px; right: 0; min-width: 300px; z-index: 1055;"
+        >
+          <div *ngIf="cropNotifications.length === 0" class="p-2 text-muted text-center">
+            No new crop alerts
+          </div>
+          <div
+            *ngFor="let notification of cropNotifications"
+            class="p-2 border-bottom notification-item"
+            style="cursor: pointer;"
+            (click)="goToDetails(notification.listingId)"
+          >
+            <strong>{{ notification.cropName }}</strong> is now available.
+          </div>
+        </div>
+      </div>
+
       <span *ngIf="userName" class="me-3 text-white">
         <i class="bi bi-person-circle me-1"></i> Welcome, {{ userName }}!
       </span>
