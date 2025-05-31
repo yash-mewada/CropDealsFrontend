@@ -7,7 +7,7 @@
 
   <div *ngFor="let tx of transactions" class="card mb-3 shadow-sm">
     <div class="card-body d-flex justify-content-between align-items-start flex-wrap">
-      
+
       <!-- Crop Image -->
       <div class="me-3 mb-3">
         <img 
@@ -27,6 +27,18 @@
         <p class="card-text mb-1">Price per Kg: ₹{{ tx.finalPricePerKg }}</p>
         <p class="card-text mb-1">Total: ₹{{ tx.totalPrice }}</p>
         <p class="card-text">Date: {{ convertToIST(tx.createdAt) | date:'medium' }}</p>
+
+        <!-- Review Status -->
+        <div *ngIf="hasReviewed(tx.id)" class="mt-2">
+          <p>
+            <i class="fa fa-check-circle text-success me-1"></i> You have already reviewed this transaction.
+          </p>
+          <div class="text-warning" style="font-size: 18px;">
+            <ng-container *ngFor="let star of getStarArray(tx.id)">
+              <i class="fa" [ngClass]="star ? 'fa-star' : 'fa-star-o'"></i>
+            </ng-container>
+          </div>
+        </div>
       </div>
 
       <!-- Action Buttons -->
@@ -34,7 +46,7 @@
         <button class="btn btn-success btn-sm mb-2 w-100" (click)="generateInvoice(tx)">
           <i class="fa fa-file-pdf me-1"></i> Download Invoice
         </button>
-        <button class="btn btn-outline-success btn-sm w-100">
+        <button *ngIf="!hasReviewed(tx.id)" class="btn btn-outline-success btn-sm w-100" (click)="addReview(tx.id)">
           <i class="fa fa-comment-dots me-1"></i> Add Review
         </button>
       </div>
